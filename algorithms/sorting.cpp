@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <vectorutils.hpp>
+#include <utils.hpp>
 using namespace std;
 
 /*
@@ -10,7 +10,7 @@ using namespace std;
  * Complexidade de espaço: O(1)
  */
 
-Vector bubbleSort(Vector vector)
+vector<int> bubbleSort(vector<int> vector)
 {
   for (int i = 0; i < vector.size(); i++)
   {
