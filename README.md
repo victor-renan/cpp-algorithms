@@ -49,7 +49,7 @@ bool booleanos[2] = {true, false};
 
 Desse modo, tem-se que a quantidade total de dados que uma array ocupa na memória equivale ao tamanho da mesma vezes o número de bytes que cada elemento ocupa.
 
-### Oxe... mas em Javascript e Python as array pode ter elemento de tipo diferente. E aí?
+### Oxe... mas arrays em Python e Js podem ter elementos de tipos diferentes...
 
 Para isso ser possível nessas linguagens, ocorrem muitas operações por debaixo dos panos. Em arrays, nativamente, não é possível definir elementos de tipos diferentes, pois geraria problemas quanto ao acesso de dados. Então, quando definimos uma array em Javascript, ou uma lista em Python, com elementos de tipos diferentes, os elementos são alocados na memória com base no maior elemento. Desse, modo, tomemos como exemplo uma array com elementos dos tipos inteiro, char e booleano:
 
@@ -71,7 +71,7 @@ Nesses dois exemplos, temos que o tipo inteiro é o que ocupa mais bytes (4) na 
 
 <div align="center">
 
-![Imagem](https://i.imgur.com/nxL7MXT.png)
+![Imagem](https://i.imgur.com/9mpRn3O.png)
 
 </div>
 
@@ -91,3 +91,6 @@ As arrays podem ser classificadas como estáticas, caso o número de elementos s
 | Mudar o valor de um elemento pelo índice | Constante O(1) |
 | Inserir elemento em um índice | Linear O(n) |
 | Deletar elemento em um índice | Linear O(n) |
+| Percorrer todos os elementos | Linear O(n) |
+
+**Exemplo em C++:** `algorithms/arrays/src/operations.cpp`
