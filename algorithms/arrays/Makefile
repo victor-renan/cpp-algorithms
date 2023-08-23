@@ -10,5 +10,10 @@ operations:
 	g++ -o $(BIN_DIR)/operations $(SRC_DIR)/operations.cpp -I $(INCLUDE_DIR)
 	./$(BIN_DIR)/operations
 
+search:
+	g++ -o $(BIN_DIR)/search $(SRC_DIR)/search.cpp -I $(INCLUDE_DIR)
+	./$(BIN_DIR)/search
+
+
 clean:
 	rm -rf $(BIN_DIR)/*
