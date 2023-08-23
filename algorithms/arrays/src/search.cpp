@@ -2,6 +2,16 @@
 #include <vector>
 using namespace std;
 
+int linearSearch(vector<int> array, int item) {
+  for (int i = 0; i < array.size(); i++) {
+    if (array[i] == item) {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
 int binarySearch(vector<int> array, int item) {
   int start = 0,
       end = array.size() - 1;
@@ -24,5 +34,7 @@ int binarySearch(vector<int> array, int item) {
 
 int main() {
   cout << binarySearch({1, 3, 5, 7, 9}, 7) << endl;
+  cout << linearSearch({1, 3, 5, 7, 9}, 7) << endl;
+
   return 0;
 }
