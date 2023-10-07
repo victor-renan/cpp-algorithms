@@ -1,15 +1,8 @@
+<h1 align="center">🖥️ Data Structures and Algorithms in C++ 💻</h1>
 
-<h1 align="center">🖥️ Algorithms and Data Structures in C++ 💻</h1>
+Some annotations of DSA topics.
 
-<div align="center">
-  
-  ![CPP](https://img.shields.io/badge/C++-00599C.svg?style=for-the-badge&logo=C++&logoColor=white)
-  
-</div>
-
-This repo was destinated to study this area of CS, with the purpose of understanding the main principles and techniques, in addition to get more experience and familiarity with the low-level language.
-
-### Requirements
+### Tests
 
 - g++ (GCC) 13.1.1
 - GNU Make 4.4.1
@@ -24,66 +17,70 @@ cd cpp-algorithms
 
 `Estruturas de Dados` são formatos específicos que compreendem o armazenamento, organização, relacionamento e as operações envolvem dados na memória do computador. Em suma, pode-se definir estruturas de dados como maneiras particulares de organizar dados na memória.
 
-O espaço de alocação das EDs na memória é referenciado através de `ponteiros`, que são strings de bits que contém o endereço que cada dado ocupa. Em uma comparação análoga, os ponteiros são como se fossem os números das páginas de um livro, que referenciam a posição de cada página e facilitam seu acesso.
+As EDs são acessadas na memória do computador através de `ponteiros` - strings de bits que contém o endereço que cada dado ocupa. Em uma comparação análoga, os ponteiros são como se fossem os números das páginas de um livro, que referenciam a posição de cada página e facilitam seu acesso.
 
-Cada estrutura de dados possui uma aplicação específica em problemas computacionais, onde são levadas em consideração as performances de suas operações em função do **tempo de execução** e do **espaço auxiliar** que elas ocupam.
+Cada estrutura de dados possui uma aplicação específica em problemas computacionais, onde são levadas em consideração as performances de suas operações em função do seu **tempo de execução** e **espaço auxiliar**.
 
-## TAD vs ED
+## Tipos Abstratos de Dados (TAD)
 
-Os `Tipos Abstratos de Dados (TAD)` são representações matemáticas de **tipos de dados**. Eles especificam o que pode ser armazenado, e as operações suportadas pelos dados. Uma `Estrutura de Dados (ED)` são os **formatos** representacionais pelos quais os dados são armazenados e acessados. A grosso modo, os TADs indicam matematicamente o tipo de um dado e o que ele pode fazer, por exemplo: 1, 2, 3... são inteiros, e com eles dá para somar, subtrair, dividir e multiplicar. Já as EDs indicam o jeito que ele irá ocupar a memória, por exemplo: [1, 2, 3] é uma array de inteiros, e nela é possível adicionar, remover, obter e mudar um elemento.
+`Tipos Abstratos de Dados (TAD)` são representações do que cada tipo de dado pode conter. Um dado do tipo `String` por exemplo, deve receber, obrigatoriamente, uma cadeia de caracteres; do tipo `int`, números inteiros; e assim por diante.
+
+Os tipos abstratos não definem como os dados são estruturados e armazenados. Isso é um papel das **Estruturas de Dados** como elencado no tópico anterior.
 
 ## Arrays
 
-Arrays são coleções de dados de mesmo tipo nas quais cada dado é alocado de maneira contígua na memória do computador. cada elemento de uma array equivale a uma porção de bytes na memória com base no seu tipo, como dado pelo exemplo abaixo:
+`Arrays` são uma das estruturas de dados mais elementares. Elas organizam os dados de maneira sequencial e contígua, de maneira que cada elemento armazenado pode ser referenciado por um índice.
+
+As `Arrays` também requerem que os dados armazenados sejam do mesmo tipo, pois cada tipo consome uma parcela de `bytes` específica da memória. Um dado `char`, por exemplo, ocupa 1 _byte_; um `int`, 4 _bytes_; e outros.
+
+Abaixo está um exemplo na linguagem delimitada nessas anotações, `C++`.
 
 ```cpp
-// Array de inteiros, onde cada elemento vale 4 bytes
 int inteiros[3] = {1, 2, 3};
+cout << inteiros[0] << endl; // 1
 
-// Array de caracteres onde cada elemento vale 1 byte
 char caracteres[3] = {'A', 'B', 'C'};
+cout << caracteres[0] << endl; // A
 
-// Array de booleanos, onde cada elemento vale 1 byte
 bool booleanos[2] = {true, false};
+cout << booleanos[0] << endl; // true
 ```
 
-Desse modo, tem-se que a quantidade total de dados que uma array ocupa na memória equivale ao tamanho da mesma vezes o número de bytes que cada elemento ocupa.
+Ao declarar uma `Array` não-dinâmica é necessário delimitar a quantidade de unidades de espaço que a mesma ocupará na memória, como no exemplo acima, `inteiros[3]` indica que a `Array` `inteiros` ocupará 3 unidades de espaço de 1 _byte_ cada uma.
 
-### Oxe... mas arrays em Python e Js podem ter elementos de tipos diferentes...
+Esse problema não ocorre em uma `Array` dinâmica. Um exemplo é o tipo `vector` do `C++`, que não carece da delimitação de espaço e pode ser :
 
-Para isso ser possível nessas linguagens, ocorrem muitas operações por debaixo dos panos. Em arrays, nativamente, não é possível definir elementos de tipos diferentes, pois geraria problemas quanto ao acesso de dados. Então, quando definimos uma array em Javascript, ou uma lista em Python, com elementos de tipos diferentes, os elementos são alocados na memória com base no maior elemento. Desse, modo, tomemos como exemplo uma array com elementos dos tipos inteiro, char e booleano:
+```cpp
+vector<int> inteiros = {1, 2, 3};
+inteiros.push_back(4); // adiciona o item 4
+
+// inteiros agora tem valor {1, 2, 3, 4}
+```
+
+Assim, numa `Array` não-dinâmica, é possível aumentar e diminuir seu tamanho pela inserção ou remoção de itens.
+
+Para referenciar e retornar qualquer elemento de uma `Array` **arr** de **n** elementos utiliza-se a notação `arr[i]`, onde **i** é o número de índices possíveis que vai de 0 a **n-1** [Pois começamos a contar os índices não pelo 1, mas pelo 0]. [Ver exemplo acima]
+
+Desse modo, se quisermos referenciar o 2° elemento de **arr**, usamos `arr[1]`; o 4°, `arr[3]`; e assim por diante, lembrando de não ultrapassar o índice máximo, que é **n-1**.
+
+### Arrays de tipos diferentes
+
+Em linguagens de alto nível, como `Python` e `Javascript`, é possivel atribuir valores de múltiplos tipos a uma `Array`, por exemplo:
 
 ```javascript
-// Array em Javascript com elementos de tipos diferentes
-const arrayTunada = [1, 'A', true]
-
+// Javascript
+const mutliplos = [1, 'A', true]
 ```
-
-Em Python, seria:
-
 ```python
-# Array em Python com elementos de tipos diferentes
-array_tunada = [1, 'A', True]
-
+# Python
+multiplos = [1, 'A', True]
 ```
 
-Nesses dois exemplos, temos que o tipo inteiro é o que ocupa mais bytes (4) na memória. Assim, todos os elementos serão alocados ocupando 4 bytes, como segue no exemplo abaixo:
+Isso só é possível porque a linguagem considera todos os elementos como tendo o tamanho do maior elemento para, assim, definir o espaço na memória.
 
-<div align="center">
+No caso acima, o maior tipo de dado é o `int`, que vale 4 _bytes_. Logo, todos os elementos, ainda que seu tipo seja menor, ocuparão 4 _bytes_ em memória.
 
-![Imagem](https://i.imgur.com/9mpRn3O.png)
-
-</div>
-
-### Acesso dos dados
-
-Os elementos de uma array são acessados pelo `índice` de sua posição na mesma, dados pela notação `A[i]` onde _A_ é a array, e _i_ é o índice do elemento, que varia de _0 a n - 1_ onde _n_ é numero de elementos, ou seja, o **tamanho da array**. No exemplo acima, o valor booleano `true` pode ser referenciado pela notação `arr[2]`.
-
-### Arrays estáticas e dinâmicas
-
-As arrays podem ser classificadas como estáticas, caso o número de elementos seja fixo, ou dinâmica, caso esse número seja variável.
-
-### Operações fundamentais de uma array
+### Operações Fundamentais
 
 | Operações | Complexidade de tempo (Big-O)|
 |-----------|--------------|
